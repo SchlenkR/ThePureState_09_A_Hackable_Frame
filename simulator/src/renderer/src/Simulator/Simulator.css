@@ -1,0 +1,9 @@
+:root {
+  --gap: 2px;
+}
+
+.error {
+  font-weight: bold;
+  font-size: 20px;
+  color: red;
+}

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doc>
+<assembly><name>Pxl.Core.UI</name></assembly>
+<members>
+<member name="M:Pxl.Ui.Primitives.countUntil``1(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``0,``0}},``0,``0,``0)">
+<summary>
+ Count until a certain value is reached (inclusive),
+ then reset to the initial value and continues counting.
+</summary>
+</member>
+</members>
+</doc>

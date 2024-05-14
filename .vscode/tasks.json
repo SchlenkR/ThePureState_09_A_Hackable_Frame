@@ -1,0 +1,25 @@
+{
+  "version": "2.0.0",
+  "options": {
+    "cwd": "."
+  },
+  "windows": {
+    "options": {
+      "shell": {
+        "executable": "C:\\Program Files\\Git\\bin\\bash.exe",
+        "args": ["-c"]
+      }
+    }
+  },
+  "tasks": [
+    {
+      "label": "Start Simulator",
+      "type": "shell",
+      "command": "./startSimulator.sh",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    }
+  ]
+}
