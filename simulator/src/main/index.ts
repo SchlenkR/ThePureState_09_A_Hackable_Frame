@@ -6,9 +6,9 @@ import { createServer } from 'http';
 import express from 'express';
 
 /*
-  * The API of this method has to be identical to
-  * the one exposed in Pxl.RemoteDisplay.
-*/
+ * The API of this method has to be identical to
+ * the one exposed in Pxl.RemoteDisplay.
+ */
 function createPxlServer(mainWindow: BrowserWindow) {
   const app = express();
   const server = createServer(app);
@@ -36,9 +36,9 @@ function createPxlServer(mainWindow: BrowserWindow) {
 
 function createWindow() {
   const mainWindow = new BrowserWindow({
-    width: 750,
-    height: 900,
-    show: false,
+    width: 580,
+    height: 840,
+    show: true,
     autoHideMenuBar: true,
     ...(process.platform === 'linux' ? { icon } : {}),
     webPreferences: {
@@ -47,6 +47,7 @@ function createWindow() {
       contextIsolation: true,
     },
   });
+  mainWindow.setAlwaysOnTop(true, 'floating');
 
   mainWindow.on('ready-to-show', () => {
     mainWindow.show();

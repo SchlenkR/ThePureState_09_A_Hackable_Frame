@@ -30,7 +30,7 @@ Eval.off canvas
 
 
 vide {
-    bg(Colors.lightGray)
+    bg(Colors.lightGray.opacity(0.5))
 }
 |> Eval.plot canvas
 
@@ -77,7 +77,7 @@ vide {
         3 * ctx.width, 3 * ctx.height,
         -90,
         angle,
-        fill(Colors.red.opacity(0.5)))
+        fill(Colors.darkRed.opacity(0.8)))
 }
 |> Eval.startFixedFps 50 canvas
 
@@ -102,7 +102,7 @@ vide {
         3 * ctx.width, 3 * ctx.height,
         -90,
         angle.value,
-        fill(Colors.red.opacity(0.5)))
+        fill(Colors.darkRed.opacity(0.8)))
 
     angle.value <- (angle.value + 8.0) % 360.0
 }
@@ -129,7 +129,7 @@ vide {
         3 * ctx.width, 3 * ctx.height,
         -90,
         angle.value,
-        fill(Colors.red.opacity(0.5)))
+        fill(Colors.darkRed.opacity(0.8)))
 }
 |> Eval.start canvas
 
@@ -155,7 +155,7 @@ vide {
         3 * ctx.width, 3 * ctx.height,
         -90,
         angle.value,
-        fill(Colors.red.opacity(0.5)))
+        fill(Colors.darkRed.opacity(0.8)))
 
     text(
         "3",
@@ -184,7 +184,7 @@ vide {
         3 * ctx.width, 3 * ctx.height,
         -90,
         angle.value,
-        fill(Colors.red.opacity(0.5)))
+        fill(Colors.darkRed.opacity(0.8)))
 
     let overallCountdownSecs = 3
     let! remainingSecs = useState { overallCountdownSecs  }
@@ -220,7 +220,7 @@ let countdown (overallCountdownSecs: int) =
             3 * ctx.width, 3 * ctx.height,
             -90,
             angle.value,
-            fill(Colors.red.opacity(0.5)))
+            fill(Colors.darkRed.opacity(0.8)))
 
         let! remainingSecs = useState { overallCountdownSecs  }
 
@@ -235,7 +235,7 @@ let countdown (overallCountdownSecs: int) =
         return remainingSecs.value <= 0
     }
 
-let finalTextAnimation =
+let plantRising =
     vide {
         let! y = Anim.easeInOutSine(4, 24, 0, Repeat.StopAtEnd)
         image(__SOURCE_DIRECTORY__ </> "plant.png", 0, y.value)
@@ -247,7 +247,7 @@ let finalAnimation =
 
         if hasCountdownFinished then
             bg(Colors.black)
-            finalTextAnimation
+            plantRising
         else 
             keepState
     }
