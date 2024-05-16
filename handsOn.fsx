@@ -7,28 +7,30 @@ open Pxl.Ui
 let w,h = 24,24
 
 let canvas = createTestCanvas w h Target.Local Connection.Http
+
 (*
 let canvas = createTestCanvas w h Target.RPi Connection.SignalR
 *)
+
+// -------------------------------------------------------------
+// Evaluate the above code in the F# Interactive (FSI)
+// by selecting it and press alt+enter (or cmd+enter on macOS)
+// -------------------------------------------------------------
+
+
+
+
+// evaluate that single line (just place the cursor on the line and
+// press alt+enter (or cmd+enter on macOS)) to turn off the canvas.
+Eval.off canvas
 
 
 
 // -------------------------------------------------------------
 
 
-(*
-    We want an "Old Movie Countdown" animation.
-    For that, we need:
-        1. - a background
-        2. - a static thin centered circle
-        3. - a number (as text) in the center that decrements every second
-        4. - an animated arc, starting from 0 to 360 degrees, that completes in a second.
-*)
 
-
-Eval.off canvas
-
-
+// A static background
 vide {
     bg(Colors.lightGray.opacity(0.5))
 }
@@ -40,7 +42,7 @@ vide {
 
 
 
-// Background, circle and (static) text!
+// Background, circle and (static) text.
 // We can access the context (ctx) to get
 // the width and height of the canvas
 // (... and more if we want to)
@@ -186,8 +188,8 @@ vide {
         angle.value,
         fill(Colors.darkRed.opacity(0.8)))
 
-    let overallCountdownSecs = 3
-    let! remainingSecs = useState { overallCountdownSecs  }
+    let duration = 3
+    let! remainingSecs = useState { duration  }
 
     text(
         $"{remainingSecs.value}",
@@ -204,7 +206,7 @@ vide {
 // -------------------------------------------------------------
 
 
-let countdown (overallCountdownSecs: int) =
+let countdown (duration: int) =
     vide {
         bg(Colors.lightGray)
 
@@ -222,7 +224,7 @@ let countdown (overallCountdownSecs: int) =
             angle.value,
             fill(Colors.darkRed.opacity(0.8)))
 
-        let! remainingSecs = useState { overallCountdownSecs  }
+        let! remainingSecs = useState { duration  }
 
         text(
             $"{remainingSecs.value}",
@@ -241,9 +243,9 @@ let plantRising =
         image(__SOURCE_DIRECTORY__ </> "plant.png", 0, y.value)
     }
 
-let finalAnimation =
+let finalAnimation duration =
     vide {
-        let! hasCountdownFinished = countdown 3
+        let! hasCountdownFinished = countdown duration
 
         if hasCountdownFinished then
             bg(Colors.black)
@@ -252,7 +254,7 @@ let finalAnimation =
             keepState
     }
 
-finalAnimation |> Eval.start canvas
+finalAnimation 3 |> Eval.start canvas
 
 
 // -------------------------------------------------------------
