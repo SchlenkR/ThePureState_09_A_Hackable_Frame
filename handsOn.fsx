@@ -20,7 +20,7 @@ let canvas = createTestCanvas w h Target.RPi Connection.SignalR
 
 
 
-// evaluate that single line (just place the cursor on the line and
+// Evaluate that single line (just place the cursor on the line and
 // press alt+enter (or cmd+enter on macOS)) to turn off the canvas.
 Eval.off canvas
 
@@ -30,7 +30,7 @@ Eval.off canvas
 
 
 
-// A static background
+// A static background! Pretty single, but it's a start :)
 vide {
     bg(Colors.lightGray.opacity(0.5))
 }
@@ -45,7 +45,7 @@ vide {
 // Background, circle and (static) text.
 // We can access the context (ctx) to get
 // the width and height of the canvas
-// (... and more if we want to)
+// (and more if we want to):
 vide {
     bg(Colors.lightGray)
 
@@ -89,6 +89,8 @@ vide {
 
 
 
+// The angle of the arc is now a state that we can change
+// over time, so that the arc spins.
 vide {
     bg(Colors.lightGray)
 
@@ -116,6 +118,8 @@ vide {
 
 
 
+// Instead of utilizing `useState` we can use `Anim.linear`,
+// which gives more info and contorl over the animation.
 vide {
     bg(Colors.lightGray)
 
@@ -137,11 +141,11 @@ vide {
 
 
 
-
 // -------------------------------------------------------------
 
 
 
+// Rendering text utilizing the `text` function.
 vide {
     bg(Colors.lightGray)
 
@@ -171,6 +175,8 @@ vide {
 
 
 
+// Utilizing `useState` to keep track of the remaining seconds,
+// so that we have a number countdown.
 vide {
     bg(Colors.lightGray)
 
@@ -206,6 +212,8 @@ vide {
 // -------------------------------------------------------------
 
 
+// A complete countdown component,
+// returning a boolean indicating if the countdown has finished.
 let countdown (duration: int) =
     vide {
         bg(Colors.lightGray)
@@ -237,13 +245,15 @@ let countdown (duration: int) =
         return remainingSecs.value <= 0
     }
 
+// The component for the plant rising animation.
 let plantRising =
     vide {
         let! y = Anim.easeInOutSine(4, 24, 0, Repeat.StopAtEnd)
         image(__SOURCE_DIRECTORY__ </> "plant.png", 0, y.value)
     }
 
-let finalAnimation duration =
+// Finally, we compose the countdown and the plant rising animation.
+let finalAnimation (duration) =
     vide {
         let! hasCountdownFinished = countdown duration
 
@@ -254,8 +264,6 @@ let finalAnimation duration =
             keepState
     }
 
+// ...and: Go!
 finalAnimation 3 |> Eval.start canvas
-
-
-// -------------------------------------------------------------
 
