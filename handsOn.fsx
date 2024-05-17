@@ -81,7 +81,8 @@ vide {
         angle,
         fill(Colors.darkRed.opacity(0.8)))
 }
-|> Eval.startFixedFps 50 canvas
+|> Eval.plot canvas
+
 
 
 
@@ -265,5 +266,5 @@ let finalAnimation (duration) =
     }
 
 // ...and: Go!
-finalAnimation 3 |> Eval.start canvas
+finalAnimation 9 |> Eval.start canvas
 
