@@ -13,12 +13,12 @@
   },
   "tasks": [
     {
-      "label": "Start Simulator",
+      "label": "Start PXL Simulator",
       "type": "shell",
       "command": "./startSimulator.sh",
       "group": {
         "kind": "build",
-        "isDefault": true
+        "isDefault": false
       }
     }
   ]

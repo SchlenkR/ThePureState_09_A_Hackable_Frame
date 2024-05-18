@@ -36,8 +36,8 @@ function createPxlServer(mainWindow: BrowserWindow) {
 
 function createWindow() {
   const mainWindow = new BrowserWindow({
-    width: 580,
-    height: 840,
+    width: 750,
+    height: 1100,
     show: true,
     autoHideMenuBar: true,
     ...(process.platform === 'linux' ? { icon } : {}),
@@ -51,7 +51,7 @@ function createWindow() {
 
   mainWindow.on('ready-to-show', () => {
     mainWindow.show();
-    mainWindow.webContents.setZoomFactor(0.7);
+    mainWindow.webContents.setZoomFactor(0.9);
   });
   mainWindow.webContents.setWindowOpenHandler((details) => {
     shell.openExternal(details.url);
